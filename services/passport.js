@@ -26,10 +26,8 @@ MongoClient.connect(keys.mongoURI, (err, db) => {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
       callbackURL: '/auth/google/callback',
+      proxy: true,
     }, (accessToken, refreshToken, profile, done) => {
-      // console.log(`access token: ${accessToken}`);
-      // console.log(`refresh token: ${refreshToken}`);
-      // console.log(`profile: ${JSON.stringify(profile, null, 4)}`)
       const userObj = {
         userID: profile.id,
         userEmail: profile.emails[0].value,
