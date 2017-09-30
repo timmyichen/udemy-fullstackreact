@@ -4,13 +4,23 @@
   "private": true,
   "proxy": {
     "/auth/google": {
-      "target": "http://udemy-timmyichen.c9users.io:8080/"
+      "target": "http://localhost:8080"
+    },
+    "/api/*": {
+      "target": "http://localhost:8080"
     }
   },
   "dependencies": {
+    "axios": "^0.16.2",
+    "materialize-css": "^0.100.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "^1.0.10"
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.2",
+    "react-scripts": "^1.0.10",
+    "react-stripe-checkout": "^2.6.3",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
