@@ -10,14 +10,14 @@ MongoClient.connect(keys.mongoURI, (err, db) => {
   console.log('successfully connected to db for auth');
   
   passport.serializeUser((user, done) => {
-    console.log(`serializing user with id of ${user._id}`)
+    // console.log(`serializing user with id of ${user._id}`)
     done(null, user._id);
   });
   
   passport.deserializeUser((id, done) => {
     db.collection('users').findOne({ _id: ObjectID(id) }, (err, user) => {
       if (err) console.log(err.stack);
-      console.log(`deserializing user with id of ${user._id}`)
+      // console.log(`deserializing user with id of ${user._id}`)
       done(null, user);
     });
   });
@@ -31,11 +31,12 @@ MongoClient.connect(keys.mongoURI, (err, db) => {
       const userObj = {
         userID: profile.id,
         userEmail: profile.emails[0].value,
+        credits: 0,
       };
       db.collection('users').findOne({ userID: profile.id }, (err, doc) => {
         if (err) console.log(err.stack);
         if (!doc) {
-            db.collection('users').insertOne(userObj, (err, res) => {
+          db.collection('users').insertOne(userObj, (err, res) => {
             if (err) console.log(err.stack);
             console.log(`user registered with email ${userObj.userEmail}`);
             done(null, res.ops[0]);
