@@ -26,7 +26,7 @@ app.use(passport.session());
 authRoutes(app);
 billingRoutes(app);
 
-if (node.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   //express serves up production assets (static files)
   app.use(express.static('client/build'));
 
